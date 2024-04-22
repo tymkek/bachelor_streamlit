@@ -18,13 +18,13 @@ class SurveySite:
         # },
         # {"role": "user", "content": f'This is the mentioned text: {input_text}'},
         # ]
-        with open("../config/books_questions.json", "r") as file:
+        with open("./config/books_questions.json", "r") as file:
             self.q_books = json.load(file)
-        with open("../config/sigma_questions.json", "r") as file:
+        with open("./config/sigma_questions.json", "r") as file:
             self.q_sigma = json.load(file)
-        with open("../config/books.txt", "r") as file:
+        with open("./config/books.txt", "r") as file:
             self.t_books = file.read()
-        with open("../config/sigma.txt", "r") as file:
+        with open("./config/sigma.txt", "r") as file:
             self.t_sigma = file.read()
 
     # def generate_questions(self):
