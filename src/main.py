@@ -16,13 +16,13 @@ db = client["bacluster"]
 
 class SurveySite:
     def __init__(self):
-        with open("../config/books_questions.json", "r") as file:
+        with open("./config/books_questions.json", "r") as file:
             self.q_books = json.load(file)
-        with open("../config/sigma_questions.json", "r") as file:
+        with open("./config/sigma_questions.json", "r") as file:
             self.q_sigma = json.load(file)
-        with open("../config/books.txt", "r") as file:
+        with open("./config/books.txt", "r") as file:
             self.t_books = file.read()
-        with open("../config/sigma.txt", "r") as file:
+        with open("./config/sigma.txt", "r") as file:
             self.t_sigma = file.read()
 
     def set_state(self, state):
