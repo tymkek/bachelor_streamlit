@@ -114,29 +114,6 @@ class SurveySite:
             timer.write("")
             article.write("Time ended, please proceed further")
 
-            # if st.session_state.page == 'text1':
-            #     print("Hello")
-            #     self.set_state('question_page1')
-            #     print(st.session_state.page)
-            # if st.session_state.page == 'text2':
-            #     self.set_state('question_page2')
-            # if st.session_state.page == 'text3':
-            #     self.set_state('question_page3')
-            # if st.session_state.page == 'text4':
-            #     self.set_state('question_page4')
-
-    # def cooldown_page(self):
-    #     with st.container():
-    #         st.write("SIEMa")
-    #         # countdown = st.empty()
-    #         N = 5
-    #         for secs in range(N,0,-1):
-    #             mm, ss = secs//60, secs%60
-    #             # countdown.metric("Text appears in: ", f"{mm:02d}:{ss:02d}")
-    #             time.sleep(1)
-    #         self.set_state('home')
-    #         st.empty()
-
     def main(self):
 
         if "page" not in st.session_state:
@@ -149,7 +126,6 @@ class SurveySite:
             match st.session_state.page:
 
                 case "home":
-                    print(st.secrets["db_uri"])
                     self.home_page()
 
                 case "choose":
@@ -169,31 +145,6 @@ class SurveySite:
 
                 case "final":
                     self.final_page()
-
-            # if st.session_state.page == 'home':
-            #         self.home_page()
-
-            # if st.session_state.page == 'choose':
-            #         self.choose_page()
-
-            # if st.session_state.page == 'text1':
-            #         self.text_page(self.t_sigma)
-
-            # if st.session_state.page == 'question_page1':
-            #         self.question_page(self.q_sigma)
-
-            # if st.session_state.page == 'text2':
-            #         self.text_page(self.t_books)
-
-            # if st.session_state.page == 'question_page2':
-            #         self.question_page(self.q_books)
-
-            # if st.session_state.page == 'cooldown':
-            #         self.cooldown_page()
-
-            # if st.session_state.page == 'final':
-            #         self.final_page()
-            # print(st.session_state.page)
 
 
 if __name__ == "__main__":
