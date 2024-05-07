@@ -5,55 +5,38 @@ import pandas as pd
 from openai import OpenAI
 import time
 import os
+from pymongo import MongoClient
 from dotenv import load_dotenv
+import certifi
 
 load_dotenv()
 
+client = MongoClient(st.secrets["db_uri"], tlsCAFile=certifi.where())
+db = client["bacluster"]
 
 class SurveySite:
     def __init__(self):
-        # self.input_text = input_text
-        # self.messages = [
-        # {"role": "system", "content": 'You will be given a text, generate 5 questions based on that text, response should be written in json format. Save both question and answer'
-        # },
-        # {"role": "user", "content": f'This is the mentioned text: {input_text}'},
-        # ]
-        with open("./config/books_questions.json", "r") as file:
+        with open("../config/books_questions.json", "r") as file:
             self.q_books = json.load(file)
-        with open("./config/sigma_questions.json", "r") as file:
+        with open("../config/sigma_questions.json", "r") as file:
             self.q_sigma = json.load(file)
-        with open("./config/books.txt", "r") as file:
+        with open("../config/books.txt", "r") as file:
             self.t_books = file.read()
-        with open("./config/sigma.txt", "r") as file:
+        with open("../config/sigma.txt", "r") as file:
             self.t_sigma = file.read()
-
-    # def generate_questions(self):
-
-    #     client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-    #     response = client.chat.completions.create(
-    #     model=self.gpt_model,
-    #     messages=self.messages,
-    #     temperature=0
-    #     )
-    #     with open("sample2.json", "w") as outfile:
-    #             json.dump(response.choices[0].message.content, outfile)
-
-    #     return(response.choices[0].message.content)
 
     def set_state(self, state):
         st.session_state.page = state
 
     def set_questions(self, filename):
-        print("1")
-
         with open(filename, "r") as file:
             q = json.load(file)
         self.questions = q
-
-    def set_callback(self, state, filename):
+    
+    def db_callback(self, file, state ):
+        db.ans.insert_one(file)
         self.set_state(state)
-        self.set_questions(filename)
-
+        
     def question_page(self, questions):
         with st.container():
             ans_dict = {}
@@ -61,11 +44,9 @@ class SurveySite:
                 ans = st.text_area(q["question"])
                 if ans:
                     ans_dict[q["question"]] = ans
+            
+            st.button("Submit answers", on_click=self.db_callback, args=[ans_dict, "final"])
 
-            with open("sample.json", "w") as outfile:
-                json.dump(ans_dict, outfile)
-
-            st.button("Submit answers", on_click=self.set_state, args=["final"])
 
     def home_page(self):
         with st.container():
@@ -168,6 +149,7 @@ class SurveySite:
             match st.session_state.page:
 
                 case "home":
+                    print(st.secrets["db_uri"])
                     self.home_page()
 
                 case "choose":
