@@ -1,0 +1,62 @@
+{
+    "An alpha male is typically considered the most commanding and confident member of a group. He is dominant, leads others, and often gets priority in privileges like feeding. This concept has been used to describe a 'manly man' who is successful in business, exuding confidence and dominance, often to the point of arrogance.": [
+        "good",
+        "excellent",
+        "excellent",
+        "excellent",
+        "excellent",
+        "good",
+        "good",
+        "good",
+        "excellent",
+        "good"
+    ],
+    "The beta male is generally seen as the opposite of the alpha male.": [
+        "bad",
+        "bad",
+        "bad",
+        "bad",
+        "bad",
+        "bad",
+        "bad",
+        "bad",
+        "bad",
+        "bad"
+    ],
+    "A sigma male is considered a 'lone wolf,' operating outside of traditional social hierarchies. Unlike alphas and betas, sigmas are self-sufficient, prioritize self-improvement, and may avoid traditional social structures.": [
+        "excellent",
+        "good",
+        "excellent",
+        "excellent",
+        "excellent",
+        "excellent",
+        "excellent",
+        "excellent",
+        "good",
+        "excellent"
+    ],
+    "Joker, Tyler Durden": [
+        "very bad",
+        "very bad",
+        "very bad",
+        "bad",
+        "very bad",
+        "very bad",
+        "bad",
+        "very bad",
+        "very bad",
+        "very bad"
+    ],
+    "I dont know.": [
+        "bad",
+        "very bad",
+        "very bad",
+        "very bad",
+        "very bad",
+        "very bad",
+        "very bad",
+        "very bad",
+        "very bad",
+        "very bad"
+    ]
+}
