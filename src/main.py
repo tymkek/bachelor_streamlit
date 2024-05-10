@@ -13,10 +13,39 @@ from itertools import islice
 load_dotenv()
 
 
-client = MongoClient(st.secrets["db_uri"], tlsCAFile=certifi.where())
+@st.cache_resource
+def init_connection():
+    return MongoClient(st.secrets["db_uri"], tlsCAFile=certifi.where())
+
+client = init_connection()
 db = client["bacluster"]
 
+@st.cache_data(ttl=600)
+def get_data():
+
+    collection = db['ans']
+
+    filter_criteria = {
+             'questions_id': st.session_state.questions_id 
+        }
+    pipeline = [
+            {
+            '$match': {
+                '_id': {'$ne': st.session_state.file_id},
+                **filter_criteria
+            }
+        },
+            {
+            '$sample': {'size': 1}  
+        }
+        ]
+    
+    result = list(collection.aggregate(pipeline))
+    return result
+
+
 class SurveySite:
+
     def __init__(self):
         with open("./config/books_questions.json", "r") as file:
             self.q_books = json.load(file)
@@ -26,7 +55,7 @@ class SurveySite:
             self.t_books = file.read()
         with open("./config/sigma.txt", "r") as file:
             self.t_sigma = file.read()
-        
+
     def set_state(self, state):
         st.session_state.page = state
     
@@ -34,6 +63,7 @@ class SurveySite:
         insert_result = db[collection].insert_one(file)
         st.session_state.file_id = insert_result.inserted_id
         self.set_state(state)
+        st.cache_data.clear()
     
     def question_page(self, questions):
         
@@ -123,25 +153,10 @@ class SurveySite:
             timer.write("")
             article.write("Time ended, please proceed further")
 
+
     def rate_page(self):
-
-        collection = db['ans']
-
-        filter_criteria = {
-             'questions_id': st.session_state.questions_id 
-        }
-        pipeline = [
-            {
-            '$match': {
-                '_id': {'$ne': st.session_state.file_id},
-                **filter_criteria
-            }
-        },
-            {
-            '$sample': {'size': 1}  
-        }
-        ]
-        result = list(collection.aggregate(pipeline))
+        
+        result = get_data()
         selected_options = {}
         selected_options["questions_id"] = st.session_state.questions_id
         with st.container():
