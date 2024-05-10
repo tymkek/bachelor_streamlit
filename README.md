@@ -32,7 +32,7 @@ Five answers created by previous users, with option to evaluate each on a scale 
 
 # Evaluation class
 
-Designed for a LLM, to evaluate user knowledge, based on given text, question set and answer set.
+Designed for a LLM, to evaluate user knowledge, based on given text, question set and answer set. Currently based on GPT4 API function calling. Other LLM functionality yet to come.
 
 
 
