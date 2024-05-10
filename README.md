@@ -6,7 +6,7 @@ This repository consist of two main parts - *streamlit app* and *evaluation clas
 
 # Streamlit app
 
-App made especially to collect data from users, in a form of answers to given set of questions, and evaluations to different answers based on the same question set.
+App made especially to collect data from users, in a form of answers to given set of questions and evaluations to different answers based on the same question set.
 
 ## App components
 
