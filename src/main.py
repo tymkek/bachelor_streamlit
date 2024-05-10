@@ -157,7 +157,6 @@ class SurveySite:
                 )
                 selected_options[key] = {"ans": value, "eval": choice}
 
-            print(selected_options)
             st.button("Submit", on_click=self.db_callback, args=[selected_options, "final", "eval"])
 
     def main(self):
@@ -166,8 +165,6 @@ class SurveySite:
             st.session_state.page = "home"
 
         with st.empty():
-
-            print(st.session_state.page)
 
             match st.session_state.page:
 
