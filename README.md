@@ -1,11 +1,14 @@
-# Streamlit survey site
+# Evaluation of human knowledge with LLM and human feedback - Bachelor Degree Project
 
-The app conducts a short test made out of 5 questions, based on chosen by user text. Questions are predetermined. The data is gathered to later be evaluated by LLM on a scale: "excellent", "good", "average", "bad", "very bad". Experiment is being done as a part of my bachelor degree project called *"Evaluation of human knowledge with LLM and human feedback"*.
+## Introduction
 
-# Fundamentals
+This repository consist of two main parts - *streamlit app* and *evaluation class*.
 
-App consists of several pages such as: **home_page**, **choose_page**, **text_page**, **questions_page**. 
-Here is a quick summary:
+# Streamlit app
+
+App made especially to collect data from users, in a form of answers to given set of questions, and evaluations to different answers based on the same question set.
+
+## App components
 
 ## home_page
 
@@ -22,4 +25,14 @@ Text with a countdown. After the time is finished, user is redirected to questio
 ## question_page
 
 Five open questions. Answers are stored in JSON format.
+
+## rate_page
+
+Five answers created by previous users, with option to evaluate each on a scale {"very bad", "bad", "average", "good", "excellent"}.
+
+# Evaluation class
+
+Designed for a LLM, to evaluate user knowledge, based on given text, question set and answer set.
+
+
 
