@@ -163,10 +163,10 @@ class SurveySite:
             for key, value in islice(result[0].items(), 2, None):
     
                 st.subheader(key)
-                st.write(value)
+                st.write(f"Answer: {value}")
     
                 choice = st.radio(
-                    f"Choose an option related to {key}:",
+                    f"Your evaluation of the given answer:",
                     ('very bad', 'bad', 'average', 'good', 'excellent'),
                     key=key
                 )
