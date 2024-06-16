@@ -1,0 +1,24 @@
+{
+    "questions": [
+      {
+        "question": "Ile wynosi średnia długość życia kota domowego i ile kotów ma problemy z nerkami?",
+        "answer": "Średnia długość życia kota domowego wynosi 12-18 lat, a problemy z nerkami dotykają ponad 50% kocich seniorów."
+      },
+      {
+        "question": "Do jakiego wieku nowy lek ma przedłużyć życie kotów?",
+        "answer": "Nowy lek ma przedłużyć życie kotów do 30 lat."
+      },
+      {
+        "question": "Kto prowadzi badania nad nowym lekiem przedłużającym życie kotów?",
+        "answer": "Badania nad nowym lekiem prowadzi profesor Toru Miyazaki wraz ze swoim zespołem badawczym."
+      },
+      {
+        "question": "Jakie białko było badane i jaką chorobę ono wywołuje?",
+        "answer": "białko AIM, które wywołuje przewlekłą chorobę nerek u kotów."
+      },
+      {
+        "question": "Z jakim producentem nawiązał współpracę profesor Miyazaki?",
+        "answer": "Profesor Miyazaki nawiązał współpracę m.in. z producentem wysokoprzetworzonych karm dla zwierząt."
+      }
+    ]
+  }
