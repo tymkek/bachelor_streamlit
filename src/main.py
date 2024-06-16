@@ -48,14 +48,14 @@ class SurveySite:
 
     def __init__(self):
 
-        with open("../config/humor_questions.json", "r") as file:
+        with open("./config/humor_questions.json", "r") as file:
             self.q_humor = json.load(file)
-        with open("../config/humor.txt", "r") as file:
+        with open("./config/humor.txt", "r") as file:
             self.t_humor = file.read()
 
-        with open("../config/koty_questions.json", "r") as file:
+        with open("./config/koty_questions.json", "r") as file:
             self.q_koty = json.load(file)
-        with open("../config/koty.txt", "r") as file:
+        with open("./config/koty.txt", "r") as file:
             self.t_koty = file.read()
 
     def set_state(self, state):
