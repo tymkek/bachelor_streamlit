@@ -47,14 +47,16 @@ def get_data():
 class SurveySite:
 
     def __init__(self):
-        with open("./config/books_questions.json", "r") as file:
-            self.q_books = json.load(file)
-        with open("./config/sigma_questions.json", "r") as file:
-            self.q_sigma = json.load(file)
-        with open("./config/books.txt", "r") as file:
-            self.t_books = file.read()
-        with open("./config/sigma.txt", "r") as file:
-            self.t_sigma = file.read()
+
+        with open("../config/humor_questions.json", "r") as file:
+            self.q_humor = json.load(file)
+        with open("../config/humor.txt", "r") as file:
+            self.t_humor = file.read()
+
+        with open("../config/koty_questions.json", "r") as file:
+            self.q_koty = json.load(file)
+        with open("../config/koty.txt", "r") as file:
+            self.t_koty = file.read()
 
     def set_state(self, state):
         st.session_state.page = state
@@ -82,76 +84,60 @@ class SurveySite:
 
     def home_page(self):
         with st.container():
-            st.title("Evaluation of user knowledge with LLM and human feedback - experiment")
-            st.write("Experiment is conducted in a survey form, consisting of two parts. Completing the test will take you approximately **7 minutes**.")
+            st.title("Evaluation of user knowledge with LLM and human feedback - badanie")
+            st.write("Zapraszam do wypełnienia zadania związanego z moją pracą licencjacką. Całośc zjamie ci około **7 minut**.")
+            st.write("Badanie składa się z dwóch części")
             st.write(
-                "In the first part, you will be choosing a short article to read. You will have 5 minutes to do so, with option to proceed further, regardless of the remaining time. After that you will be shown five questions based on the chosen text, answer them **accordingly to your knowledge**."
-            )
+                "Część pierwsza, ma postać testu czytania ze zrozumieniem. Do wyboru masz dwa teskty, wybierz ten który uważasz za ciekawszy. Następnie, będziesz mieć 5 minut na przeczytanie go, z możliwością przejścia do pytań szybciej. Do przeczytanego tekstu nie ma możliwości powortu. Odpowiadaj na pytania zgodnie ze **swoim stanem wiedzy**, nie zostawiaj pustych odpowiedźi (odpowiedź *nie wiem* też jest poprawna)")
             st.write(
-                "In the second part, you will be evaluating 5 different answers to the same questions set, with given evaluation scale."
+                "W drugiej części dostaniesz zestaw odpowiedźi na te same pytania, proszę oceń ich poprawność według twojej wiedzy."
             )
-            st.write("Participation is anonymous, by pressing the button, you agree to the experiment terms.")
-            st.button("Next", on_click=self.set_state, args=["choose"])
+            st.write("Udział jest anonimowy, wyrazajac zgodę na udział, przechodzisz do pierwszej części.")
+            st.button("Wyrażam zgodę.", on_click=self.set_state, args=["choose"])
 
     def final_page(self):
         with st.container():
-            st.title("Thanks for participation")
+            st.title("Dziękuję za udział")
+            st.write("W razie pytań, proszę o kontakt na email: t.dubowski@student.uw.edu.pl")
 
     def choose_page(self):
         with st.container():
-            st.title("Please, choose the article you would like to read")
-            tab1, tab2, tab3, tab4 = st.tabs(["Article 1", "Article 2", "Article 3", "Article 4"])
+            st.title("Wybierz tekst, który wolisz przeczytać")
+            tab1, tab2 = st.tabs(["Pierwszy tekst", "Drugi tekst"])
             with tab1:
-                st.header("The truth about sigma males")
-                st.write("A tale of toxic masculinity and romanticising loneliness")
-                st.write("Genere: pop culture, social media")
-                st.button("Choose", key="t1", on_click=self.set_state, args=["text1"])
+                st.header("O komizmie")
+                st.write("Tagi: samopoczucie, styl zycia, filozofia")
+                st.button("Wybieram", key="t1", on_click=self.set_state, args=["text1"])
 
             with tab2:
-                st.header("Reading Books Is Useless: Here's a Better Way to Read")
-                st.write("Genere: studying, ")
-                st.button("Choose", key="t2", on_click=self.set_state, args=["text2"])
+                st.header("Kocia długowieczność na wyciągnięcie ręki? Nowy lek ma przedłużyć życie kotów")
+                st.write("Tagi: biologia, koty, obyczajowe, badania naukowe")
+                st.button("Wybieram", key="t2", on_click=self.set_state, args=["text2"])
 
-            with tab3:
-                st.header("Article 3 placeholder, choosing it will redirect you to article 1")
-                st.write("Genere: science")
-                st.button("Choose", key="t3", on_click=self.set_state, args=["text1"])
-
-            with tab4:
-                st.header("Article 4 placeholder, choosing it will redirect you to article 1")
-                st.write("Genere: politics")
-                st.button("Choose", key="t4", on_click=self.set_state, args=["text1"])
 
     def text_page(self, text):
         with st.container():
 
             timer = st.empty()
             article = st.empty()
-            article.write(text)
-            N = 10
+            article.markdown(text)
+            N = 300
             match st.session_state.page:
                 case "text1":
                     st.button(
-                        "Go next", on_click=self.set_state, args=["question_page1"]
+                        "Przechodzę dalej", on_click=self.set_state, args=["question_page1"]
                     )
                 case "text2":
                     st.button(
-                        "Go next", on_click=self.set_state, args=["question_page2"]
+                        "Przechodzę dalej", on_click=self.set_state, args=["question_page2"]
                     )
-                case "text3":
-                    st.button(
-                        "Go next", on_click=self.set_state, args=["question_page3"]
-                    )
-                case "text4":
-                    st.button(
-                        "Go next", on_click=self.set_state, args=["question_page4"]
-                    )
+        
             for secs in range(N, 0, -1):
                 mm, ss = secs // 60, secs % 60
-                timer.metric("Countdown", f"{mm:02d}:{ss:02d}")
+                timer.metric("Pozostały czas", f"{mm:02d}:{ss:02d}")
                 time.sleep(1)
             timer.write("")
-            article.write("Time ended, please proceed further")
+            article.write("Czas się skończył, proszę przejść dalej")
 
 
     def rate_page(self):
@@ -163,10 +149,10 @@ class SurveySite:
             for key, value in islice(result[0].items(), 2, None):
     
                 st.subheader(key)
-                st.write(f"Answer: {value}")
+                st.write(f"**Odpowiedź**: {value}")
     
                 choice = st.radio(
-                    f"Your evaluation of the given answer:",
+                    f"Twoja ocena:",
                     ('very bad', 'bad', 'average', 'good', 'excellent'),
                     key=key
                 )
@@ -190,16 +176,16 @@ class SurveySite:
                     self.choose_page()
 
                 case "question_page1":
-                    self.question_page(self.q_sigma)
+                    self.question_page(self.q_humor)
 
                 case "text1":
-                    self.text_page(self.t_sigma)
+                    self.text_page(self.t_humor)
 
                 case "question_page2":
-                    self.question_page(self.q_books)
+                    self.question_page(self.q_koty)
 
                 case "text2":
-                    self.text_page(self.t_books)
+                    self.text_page(self.t_koty)
                 
                 case "rate_page":
                     self.rate_page()
