@@ -88,9 +88,9 @@ class SurveySite:
             st.write("Zapraszam do wypełnienia zadania związanego z moją pracą licencjacką. Całośc zjamie ci około **7 minut**.")
             st.write("Badanie składa się z dwóch części")
             st.write(
-                "Część pierwsza, ma postać testu czytania ze zrozumieniem. Do wyboru masz dwa teskty, wybierz ten który uważasz za ciekawszy. Następnie, będziesz mieć 5 minut na przeczytanie go, z możliwością przejścia do pytań szybciej. Do przeczytanego tekstu nie ma możliwości powortu. Odpowiadaj na pytania zgodnie ze **swoim stanem wiedzy**, nie zostawiaj pustych odpowiedźi (odpowiedź *nie wiem* też jest poprawna)")
+                "Część pierwsza, ma postać testu czytania ze zrozumieniem. Do wyboru masz dwa teskty, wybierz ten który uważasz za ciekawszy. Następnie, będziesz mieć 5 minut na przeczytanie go, z możliwością przejścia do pytań szybciej. Do przeczytanego tekstu nie ma możliwości powrotu. Odpowiadaj na pytania zgodnie ze **swoim stanem wiedzy**, nie zostawiaj pustych odpowiedzi (odpowiedź *nie wiem* też jest poprawna, jendak lepiej zostawić odpowiedź częściowo poprawną)")
             st.write(
-                "W drugiej części dostaniesz zestaw odpowiedźi na te same pytania, proszę oceń ich poprawność według twojej wiedzy."
+                "W drugiej części dostaniesz zestaw odpowiedzi na te same pytania, proszę oceń ich poprawność."
             )
             st.write("Udział jest anonimowy, wyrazajac zgodę na udział, przechodzisz do pierwszej części.")
             st.button("Wyrażam zgodę.", on_click=self.set_state, args=["choose"])
