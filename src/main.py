@@ -147,13 +147,12 @@ class SurveySite:
         selected_options["questions_id"] = st.session_state.questions_id
 
         with st.popover("Pokaz arytkuł"):
-                article = st.empty()
-
-                if st.session_state.questions_id == "question_page1":
-                    article.markdown(self.t_humor)
-                else:
-                    article.markdown(self.t_koty)
             article = st.empty()
+
+            if st.session_state.questions_id == "question_page1":
+                    article.markdown(self.t_humor)
+            else:
+                    article.markdown(self.t_koty)
         
         with st.container():
             for key, value in islice(result[0].items(), 2, None):
