@@ -145,6 +145,16 @@ class SurveySite:
         result = get_data()
         selected_options = {}
         selected_options["questions_id"] = st.session_state.questions_id
+
+        with st.popover("Pokaz arytkuł"):
+                article = st.empty()
+
+                if st.session_state.questions_id == "question_page1":
+                    article.markdown(self.t_humor)
+                else:
+                    article.markdown(self.t_koty)
+            article = st.empty()
+        
         with st.container():
             for key, value in islice(result[0].items(), 2, None):
     
