@@ -147,7 +147,8 @@ class SurveySite:
         selected_options["questions_id"] = st.session_state.questions_id
         
         with st.container():
-            
+
+            st.write("Jeśli nie pamiętasz dokładnie artykułu, masz teraz opcję z niego korzystać.")
             with st.popover("Pokaz arytkuł"):
                 article = st.empty()
 
